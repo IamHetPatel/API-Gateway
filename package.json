@@ -1,18 +1,16 @@
 {
   "name": "api-gateway",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API Gateway with Rate Limiting and Caching",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.7",
     "express": "^4.21.0",
-    "rate-limiter-flexible": "^5.0.3",
+    "ioredis": "^5.4.1",
+    "node-fetch": "^2.7.0",
+    "rate-limiter-flexible": "^2.4.2",
     "redis": "^4.7.0"
   }
 }
