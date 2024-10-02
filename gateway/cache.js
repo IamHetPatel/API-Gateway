@@ -1,7 +1,7 @@
 const Redis = require('ioredis');
 
 const redisClient = new Redis({
-  host: 'localhost',
+  host: 'redis', // Docker service name for Redis
   port: 6379
 });
 
