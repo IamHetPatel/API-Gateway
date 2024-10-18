@@ -15,8 +15,8 @@ app.use(logging);
 // Rate Limiting middleware
 app.use('/api/*', rateLimiter);
 
-// Authentication middleware
-app.use('/api/*', auth);
+// // // Authentication middleware
+// // app.use('/api/*', auth);
 
 // Caching middleware
 app.use('/api/*', cache);

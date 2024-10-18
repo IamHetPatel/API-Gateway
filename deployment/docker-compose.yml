@@ -1,4 +1,9 @@
 version: '3'
+
+networks:
+  mynetwork:
+    driver: bridge
+
 services:
   gateway:
     build: ../gateway
@@ -9,30 +14,75 @@ services:
       - product-service
       - order-service
       - redis
+    networks:
+      - mynetwork
 
   user-service:
     build: ../microservices/user-service
     ports:
       - "4000:4000"
+    depends_on:
+      - mongodb-user
+    networks:
+      - mynetwork
 
   product-service:
     build: ../microservices/product-service
     ports:
       - "5001:5001"
+    depends_on:
+      - mongodb-product
+    networks:
+      - mynetwork
 
   order-service:
     build: ../microservices/order-service
     ports:
       - "6000:6000"
+    depends_on:
+      - mongodb-order
+      - product-service
+    networks:
+      - mynetwork
+
+  mongodb-user:
+    image: mongo
+    container_name: mongodb-user
+    ports:
+      - "27017:27017"
+    networks:
+      - mynetwork
+
+  mongodb-product:
+    image: mongo
+    container_name: mongodb-product
+    ports:
+      - "27018:27017"
+    networks:
+      - mynetwork
+
+  mongodb-order:
+    image: mongo
+    container_name: mongodb-order
+    ports:
+      - "27019:27017"
+    networks:
+      - mynetwork
 
   redis:
     image: redis
+    container_name: redis
     ports:
       - "6379:6379"
+    networks:
+      - mynetwork
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     volumes:
       - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - mynetwork

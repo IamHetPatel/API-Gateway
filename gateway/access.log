@@ -1,0 +1,8 @@
+::1 - - [04/Oct/2024:15:35:24 +0000] "GET /api/abc HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:35:24 +0000] "GET /api HTTP/1.1" 404 142 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/ HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/swagger-ui-init.js HTTP/1.1" 304 - "http://localhost:3000/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/swagger-ui.css HTTP/1.1" 200 152071 "http://localhost:3000/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/swagger-ui-standalone-preset.js HTTP/1.1" 200 230293 "http://localhost:3000/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/swagger-ui-bundle.js HTTP/1.1" 200 1452753 "http://localhost:3000/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+::1 - - [04/Oct/2024:15:36:15 +0000] "GET /docs/favicon-32x32.png HTTP/1.1" 200 628 "http://localhost:3000/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"

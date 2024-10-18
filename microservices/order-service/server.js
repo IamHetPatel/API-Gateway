@@ -1,22 +1,45 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express();
 app.use(express.json());
 
-let orders = [
-  { id: 1, product: 'Laptop', quantity: 2 },
-  { id: 2, product: 'Phone', quantity: 1 }
-];
-
-// Get all orders
-app.get('/api/orders', (req, res) => {
-  res.json(orders);
+mongoose.connect('mongodb://mongodb-order:27017/orders', {
 });
 
-// Get a specific order
-app.get('/api/orders/:id', (req, res) => {
-  const order = orders.find(o => o.id === parseInt(req.params.id));
-  if (!order) return res.status(404).send('Order not found');
-  res.json(order);
+const orderSchema = new mongoose.Schema({
+  userId: String,
+  products: [{ productId: String, quantity: Number }],
+  totalAmount: Number,
+  status: { type: String, default: 'Pending' },
+});
+
+const Order = mongoose.model('Order', orderSchema);
+
+// Create an order
+app.post('/api/orders', async (req, res) => {
+  const { userId, products } = req.body;
+  let totalAmount = 0;
+
+  for (const product of products) {
+    const productData = await fetch(`http://product-service:5001/api/products/${product.productId}`);
+    const productInfo = await productData.json();
+    totalAmount += productInfo.price * product.quantity;
+  }
+
+  try {
+    const order = new Order({ userId, products, totalAmount });
+    await order.save();
+    res.status(201).json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Error creating order' });
+  }
+});
+
+// Get orders by user
+app.get('/api/orders/user/:userId', async (req, res) => {
+  const orders = await Order.find({ userId: req.params.userId });
+  res.json(orders);
 });
 
 const port = process.env.PORT || 6000;
